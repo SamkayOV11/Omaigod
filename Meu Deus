@@ -1,0 +1,94 @@
+
+import java.util.Scanner;
+
+public class CadastroItens {
+
+    public static void main(String[] args) {
+
+        Scanner entrada = new Scanner(System.in);
+
+        // Array para armazenar os nomes dos itens
+        String[] nomes = new String[10];
+
+        // Array bidimensional para armazenar outras duas informações
+        // Coluna 0: Gênero
+        // Coluna 1: Ano de lançamento
+        String[][] informacoes = new String[10][2];
+
+        int quantidade = 0;
+        int opcao;
+
+        do {
+            System.out.println("\n===== MENU =====");
+            System.out.println("1 - Cadastrar item");
+            System.out.println("2 - Listar itens cadastrados");
+            System.out.println("3 - Encerrar aplicação");
+            System.out.print("Escolha uma opção: ");
+
+            opcao = entrada.nextInt();
+            entrada.nextLine();
+
+            switch (opcao) {
+
+                case 1:
+
+                    if (quantidade < 10) {
+
+                        System.out.print("Digite o nome da música, filme ou série: ");
+                        nomes[quantidade] = entrada.nextLine();
+
+                        System.out.print("Digite o gênero: ");
+                        informacoes[quantidade][0] = entrada.nextLine();
+
+                        System.out.print("Digite o ano de lançamento: ");
+                        informacoes[quantidade][1] = entrada.nextLine();
+
+                        quantidade++;
+
+                        System.out.println("\nItem cadastrado com sucesso!");
+
+                    } else {
+                        System.out.println("\nLimite de 10 itens atingido!");
+                    }
+
+                    break;
+
+                case 2:
+
+                    if (quantidade == 0) {
+
+                        System.out.println("\nNenhum item cadastrado!");
+
+                    } else {
+
+                        System.out.println("\n===== ITENS CADASTRADOS =====");
+
+                        for (int i = 0; i < quantidade; i++) {
+
+                            System.out.println("\nItem " + (i + 1));
+                            System.out.println("Nome: " + nomes[i]);
+                            System.out.println("Gênero: " + informacoes[i][0]);
+                            System.out.println("Ano de lançamento: " + informacoes[i][1]);
+
+                        }
+                    }
+
+                    break;
+
+                case 3:
+
+                    System.out.println("\nAplicação encerrada!");
+
+                    break;
+
+                default:
+
+                    System.out.println("\nOpção inválida! Tente novamente.");
+
+            }
+
+        } while (opcao != 3);
+
+        entrada.close();
+    }
+}
